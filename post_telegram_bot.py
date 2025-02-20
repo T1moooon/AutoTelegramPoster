@@ -1,10 +1,8 @@
+import os
+import random
+import argparse
 from telegram import Bot
 from environs import Env
-
-
-def bot_send_message(bot_token, chat_id):
-    bot = Bot(token=bot_token)
-    bot.send_message(chat_id=chat_id, text="Привет, это сообщение от бота")
 
 
 def bot_send_image(bot_token, photo_path, chat_id):
@@ -13,8 +11,14 @@ def bot_send_image(bot_token, photo_path, chat_id):
         bot.send_photo(
             chat_id=chat_id,
             photo=photo,
-            caption="Это картинка от бота"
         )
+
+
+def get_random_image(image_dir):
+    images = [os.path.join(image_dir, img) for img in os.listdir(image_dir) if img.endswith(('.png', '.jpg', '.jpeg'))]
+    if not images:
+        raise FileNotFoundError("В директории нет изображений.")
+    return random.choice(images)
 
 
 def main():
@@ -22,8 +26,22 @@ def main():
     env.read_env()
     BOT_TOKEN = env.str("BOT_TOKEN")
     CHAT_ID = env.int("CHAT_ID")
-    photo_path = 'images/nasa_epic_0.png'
-    bot_send_message(BOT_TOKEN, CHAT_ID)
+    parser = argparse.ArgumentParser(description="Отправка сообщений и изображений в Telegram-канал.")
+    parser.add_argument(
+        "--image",
+        type=str,
+        help="Путь к изображению для отправки. Если не указан, выбирается случайное изображение из директории images.",
+        default=None
+    )
+    args = parser.parse_args()
+    if args.image:
+        photo_path = args.image
+    else:
+        try:
+            photo_path = get_random_image("images")
+        except FileNotFoundError as e:
+            print(e)
+            return
     bot_send_image(BOT_TOKEN, photo_path, CHAT_ID)
 
 
