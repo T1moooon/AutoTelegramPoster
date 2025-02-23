@@ -11,8 +11,8 @@ def fetch_spacex_last_launch(launch_id=None, folder="images"):
         url = 'https://api.spacexdata.com/v5/launches/latest'
     response = requests.get(url)
     response.raise_for_status()
-    launch_data = response.json()
-    images = launch_data.get('links', {}).get('flickr', {}).get('original', [])
+    launch_info = response.json()
+    images = launch_info.get('links', {}).get('flickr', {}).get('original', [])
     Path(folder).mkdir(parents=True, exist_ok=True)
     if images:
         for index, image in enumerate(images):

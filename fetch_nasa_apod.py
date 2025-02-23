@@ -14,10 +14,10 @@ def download_nasa_images(api_key, count=30, folder="images"):
     url = "https://api.nasa.gov/planetary/apod"
     response = requests.get(url, params=params)
     response.raise_for_status()
-    apod_data = response.json()
+    apod_images = response.json()
     Path(folder).mkdir(parents=True, exist_ok=True)
     image_counter = 0
-    for apod in apod_data:
+    for apod in apod_images:
         if apod.get("media_type") == "image":
             image_url = apod["url"]
             extension = get_file_extension(image_url)

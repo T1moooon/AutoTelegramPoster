@@ -14,10 +14,10 @@ def download_epic_images(api_key, count=5, folder="images"):
     url = 'https://api.nasa.gov/EPIC/api/natural'
     response = requests.get(url, params=params)
     response.raise_for_status()
-    epic_data = response.json()
-    epic_data = epic_data[:count]
+    epic_images = response.json()
+    epic_images = epic_images[:count]
     Path(folder).mkdir(parents=True, exist_ok=True)
-    for index, image in enumerate(epic_data):
+    for index, image in enumerate(epic_images):
         image_date = datetime.strptime(image["date"], "%Y-%m-%d %H:%M:%S")
         image_name = image["image"]
         image_url = f"https://api.nasa.gov/EPIC/archive/natural/{image_date.strftime('%Y/%m/%d')}/png/{image_name}.png"
