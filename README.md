@@ -13,10 +13,10 @@ pip install -r requirements.txt
 Создайте файл `.env` в корне проекта и добавьте туда следующие переменные:
 
 ```env
-BOT_TOKEN=ваш_токен_бота
-CHAT_ID=ваш_chat_id
-NASA_API_KEY=ваш_api_ключ_от_nasa
-DELAY=4  # Задержка в часах для публикации (по умолчанию 4)
+TG_BOT_TOKEN=ваш_токен_бота
+TG_CHAT_ID=ваш_chat_id
+API_KEY=ваш_api_ключ_от_nasa
+TG_BOT_DELAY=4  # Задержка в часах для публикации (по умолчанию 4)
 ```
 
 ## Скрипты
@@ -26,15 +26,14 @@ DELAY=4  # Задержка в часах для публикации (по ум
 
 **Использование:**
 ```bash
-python fetch_nasa_apod.py --api_key ваш_api_ключ [--count 5] [--folder images]
+python fetch_nasa_apod.py [--count 5] [--folder images]
 ```
-- `--api_key`: API ключ для доступа к NASA API (обязательный).
 - `--count`: Количество изображений для скачивания (по умолчанию 5).
 - `--folder`: Папка для сохранения изображений (по умолчанию `images`).
 
 **Пример:**
 ```bash
-python fetch_nasa_apod.py --api_key ваш_api_ключ --count 10 --folder nasa_apod
+python fetch_nasa_apod.py --count 10 --folder nasa_apod
 ```
 
 ### 2. `fetch_nasa_epic.py`
@@ -42,15 +41,14 @@ python fetch_nasa_apod.py --api_key ваш_api_ключ --count 10 --folder nasa
 
 **Использование:**
 ```bash
-python fetch_nasa_epic.py --api_key ваш_api_ключ [--count 5] [--folder images]
+python fetch_nasa_epic.py [--count 5] [--folder images]
 ```
-- `--api_key`: API ключ для доступа к NASA API (обязательный).
 - `--count`: Количество изображений для скачивания (по умолчанию 5).
 - `--folder`: Папка для сохранения изображений (по умолчанию `images`).
 
 **Пример:**
 ```bash
-python fetch_nasa_epic.py --api_key ваш_api_ключ --count 3 --folder nasa_epic
+python fetch_nasa_epic.py --count 3 --folder nasa_epic
 ```
 
 ### 3. `fetch_spacex_images.py`
