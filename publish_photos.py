@@ -3,7 +3,7 @@ import random
 import time
 import argparse
 from telegram import Bot
-from environs import Env
+from dotenv import load_dotenv
 
 
 def publish_photos(bot_token, folder, chat_id, delay):
@@ -22,11 +22,10 @@ def publish_photos(bot_token, folder, chat_id, delay):
 
 
 def main():
-    env = Env()
-    env.read_env()
-    BOT_TOKEN = env.str("BOT_TOKEN")
-    DELAY = env.int("DELAY", 4) * 3600
-    CHAT_ID = env.int("CHAT_ID")
+    load_dotenv()
+    BOT_TOKEN = os.environ['BOT_TOKEN']
+    DELAY = int(os.getenv("DELAY", "4")) * 3600
+    CHAT_ID = os.environ['CHAT_ID']
     parser = argparse.ArgumentParser(description="Публикация фотографий в Telegram-канал.")
     parser.add_argument(
         "--folder",

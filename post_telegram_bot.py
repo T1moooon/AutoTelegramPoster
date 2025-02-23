@@ -2,7 +2,7 @@ import os
 import random
 import argparse
 from telegram import Bot
-from environs import Env
+from dotenv import load_dotenv
 
 
 def bot_send_image(bot_token, photo_path, chat_id):
@@ -22,10 +22,9 @@ def get_random_image(image_dir):
 
 
 def main():
-    env = Env()
-    env.read_env()
-    BOT_TOKEN = env.str("BOT_TOKEN")
-    CHAT_ID = env.int("CHAT_ID")
+    load_dotenv()
+    BOT_TOKEN = os.environ['BOT_TOKEN']
+    CHAT_ID = os.environ['CHAT_ID']
     parser = argparse.ArgumentParser(description="Отправка сообщений и изображений в Telegram-канал.")
     parser.add_argument(
         "--image",
