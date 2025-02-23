@@ -11,11 +11,13 @@ def fetch_spacex_last_launch(launch_id="latest", folder="images"):
     launch_info = response.json()
     images = launch_info.get('links', {}).get('flickr', {}).get('original', [])
     Path(folder).mkdir(parents=True, exist_ok=True)
-    if images:
-        for index, image in enumerate(images):
-            save_path = Path(folder) / f"spacex_{index}.jpg"
-            download_image(image, save_path)
-            print(f"Скачано: {save_path}")
+    if not images:
+        print("Фотографии для данного запуска отсутствуют.")
+        return
+    for index, image in enumerate(images):
+        save_path = Path(folder) / f"spacex_{index}.jpg"
+        download_image(image, save_path)
+        print(f"Скачано: {save_path}")
 
 
 def main():

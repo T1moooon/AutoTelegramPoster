@@ -19,12 +19,13 @@ def download_nasa_images(api_key, count=30, folder="images"):
     image_counter = 0
     for apod in apod_images:
         if apod.get("media_type") == "image":
-            image_url = apod["url"]
-            extension = get_file_extension(image_url)
-            save_path = Path(folder) / f"nasa_apod_{image_counter}{extension}"
-            download_image(image_url, save_path)
-            print(f"Скачано: {save_path}")
-            image_counter += 1
+            continue
+        image_url = apod["url"]
+        extension = get_file_extension(image_url)
+        save_path = Path(folder) / f"nasa_apod_{image_counter}{extension}"
+        download_image(image_url, save_path)
+        print(f"Скачано: {save_path}")
+        image_counter += 1
 
 
 def main():
