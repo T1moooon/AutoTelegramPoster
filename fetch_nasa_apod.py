@@ -1,8 +1,10 @@
 import argparse
 import requests
+import os
 from pathlib import Path
 from urllib.parse import urlencode
 from utils import download_image, get_file_extension
+from dotenv import load_dotenv
 
 
 def download_nasa_images(api_key, count=30, folder="images"):
@@ -28,12 +30,13 @@ def download_nasa_images(api_key, count=30, folder="images"):
 
 
 def main():
+    load_dotenv()
     parser = argparse.ArgumentParser(description="Скачивает фотографии NASA APOD.")
-    parser.add_argument("--api_key", required=True, help="API ключ для доступа к NASA API.")
     parser.add_argument("--count", type=int, default=5, help="Количество изображений для скачивания.")
     parser.add_argument("--folder", default="images", help="Папка для сохранения изображений.")
     args = parser.parse_args()
-    download_nasa_images(args.api_key, args.count, args.folder)
+    api_key = os.environ['API_KEY']
+    download_nasa_images(api_key, args.count, args.folder)
 
 
 if __name__ == "__main__":

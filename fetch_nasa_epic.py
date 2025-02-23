@@ -1,9 +1,11 @@
 import argparse
 import requests
+import os
 from pathlib import Path
 from urllib.parse import urlencode
 from datetime import datetime
 from utils import download_image
+from dotenv import load_dotenv
 
 
 def download_epic_images(api_key, count=5, folder="images"):
@@ -27,12 +29,13 @@ def download_epic_images(api_key, count=5, folder="images"):
 
 
 def main():
+    load_dotenv()
     parser = argparse.ArgumentParser(description="Скачивает фотографии Земли из NASA EPIC.")
-    parser.add_argument("--api_key", required=True, help="API ключ для доступа к NASA API.")
     parser.add_argument("--count", type=int, default=5, help="Количество изображений для скачивания.")
     parser.add_argument("--folder", default="images", help="Папка для сохранения изображений.")
     args = parser.parse_args()
-    download_epic_images(args.api_key, args.count, args.folder)
+    api_key = os.environ['API_KEY']
+    download_epic_images(api_key, args.count, args.folder)
 
 
 if __name__ == "__main__":
