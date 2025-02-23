@@ -2,7 +2,6 @@ import argparse
 import requests
 import os
 from pathlib import Path
-from urllib.parse import urlencode
 from utils import download_image, get_file_extension
 from dotenv import load_dotenv
 
@@ -12,9 +11,8 @@ def download_nasa_images(api_key, count=30, folder="images"):
         "api_key": api_key,
         "count": count,
     }
-    encoded_params = urlencode(params)
-    url = f"https://api.nasa.gov/planetary/apod?{encoded_params}"
-    response = requests.get(url)
+    url = "https://api.nasa.gov/planetary/apod"
+    response = requests.get(url, params=params)
     response.raise_for_status()
     apod_data = response.json()
     Path(folder).mkdir(parents=True, exist_ok=True)

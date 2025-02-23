@@ -3,8 +3,8 @@ from pathlib import Path
 from urllib.parse import urlsplit, unquote
 
 
-def download_image(image_url, save_path):
-    response = requests.get(image_url)
+def download_image(image_url, save_path, params=None):
+    response = requests.get(image_url, params=params)
     response.raise_for_status()
 
     folder_path = Path(save_path).parent
