@@ -23,8 +23,8 @@ def get_random_image(image_dir):
 
 def main():
     load_dotenv()
-    BOT_TOKEN = os.environ['TG_BOT_TOKEN']
-    CHAT_ID = os.environ['TG_CHAT_ID']
+    bot_token = os.environ['TG_BOT_TOKEN']
+    chat_id = os.environ['TG_CHAT_ID']
     parser = argparse.ArgumentParser(description="Отправка сообщений и изображений в Telegram-канал.")
     parser.add_argument(
         "--image",
@@ -41,7 +41,7 @@ def main():
         except FileNotFoundError as e:
             print(e)
             return
-    bot_send_image(BOT_TOKEN, photo_path, CHAT_ID)
+    bot_send_image(bot_token, photo_path, chat_id)
 
 
 if __name__ == "__main__":
