@@ -23,9 +23,9 @@ def publish_photos(bot_token, folder, chat_id, delay):
 
 def main():
     load_dotenv()
-    BOT_TOKEN = os.environ['BOT_TOKEN']
-    DELAY = int(os.getenv("DELAY", "4")) * 3600
-    CHAT_ID = os.environ['CHAT_ID']
+    BOT_TOKEN = os.environ['TG_BOT_TOKEN']
+    DELAY = int(os.getenv("TG_BOT_DELAY", "4")) * 3600
+    CHAT_ID = os.environ['TG_CHAT_ID']
     parser = argparse.ArgumentParser(description="Публикация фотографий в Telegram-канал.")
     parser.add_argument(
         "--folder",

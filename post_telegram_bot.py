@@ -23,8 +23,8 @@ def get_random_image(image_dir):
 
 def main():
     load_dotenv()
-    BOT_TOKEN = os.environ['BOT_TOKEN']
-    CHAT_ID = os.environ['CHAT_ID']
+    BOT_TOKEN = os.environ['TG_BOT_TOKEN']
+    CHAT_ID = os.environ['TG_CHAT_ID']
     parser = argparse.ArgumentParser(description="Отправка сообщений и изображений в Telegram-канал.")
     parser.add_argument(
         "--image",
