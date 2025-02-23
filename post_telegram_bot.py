@@ -38,8 +38,8 @@ def main():
     else:
         try:
             photo_path = get_random_image("images")
-        except FileNotFoundError as e:
-            print(e)
+        except FileNotFoundError:
+            print("Файл не найден.")
             return
     bot_send_image(bot_token, photo_path, chat_id)
 
