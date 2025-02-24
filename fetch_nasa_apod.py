@@ -34,7 +34,7 @@ def main():
     parser.add_argument("--count", type=int, default=5, help="Количество изображений для скачивания.")
     parser.add_argument("--folder", default="images", help="Папка для сохранения изображений.")
     args = parser.parse_args()
-    api_key = os.environ['API_KEY']
+    api_key = os.environ['NASA_API_KEY']
     download_nasa_images(api_key, args.count, args.folder)
 
 

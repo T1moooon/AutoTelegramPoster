@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ```env
 TG_BOT_TOKEN=ваш_токен_бота
 TG_CHAT_ID=ваш_chat_id
-API_KEY=ваш_api_ключ_от_nasa
+NASA_API_KEY=ваш_api_ключ_от_nasa
 TG_BOT_DELAY=4  # Задержка в часах для публикации (по умолчанию 4)
 ```
 
